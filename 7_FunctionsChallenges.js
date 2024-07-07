@@ -61,7 +61,6 @@ function removeFromString(str, startIndex, charactersToRemove){
     let newStr = str.slice(0, startIndex) + str.slice(startIndex + charactersToRemove);
     return newStr;
 }
-console.log(removeFromString('Hello School', 0, 6));
 
 // Exercise 5. Write a function called indexOf, which accepts an array and a number.
 // The function should return the first index at which the value exists or -1 if the value is not found.
@@ -93,3 +92,25 @@ function indexOf(arr, number) {
 // includes('abcd', 'b') // --> true
 // includes('abcd', 'e') // --> false
 // includes('abcd', 'a', 2) // --> false
+function includes(collection, value, startIndex){
+    let length = collection.length;
+    let start = startIndex || 0;
+
+    if (Array.isArray(collection) || typeof collection == 'string') {
+        for(let i = start; i < length; i++) {
+            if (collection[i] === value) {
+                return true;
+            }
+        }
+        return false;
+    } else if (typeof collection === 'object' && collection !== null) {
+        for (let key in collection) {
+            if (collection[key] === value) {
+                return true;
+            }
+        }
+        return false;
+    } else {
+        return false;
+    }
+}
